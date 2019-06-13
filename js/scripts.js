@@ -1,9 +1,7 @@
 $(function(){
 
   var userInput;
-  var temp = [];
-  var counter = 0;
-  var elem = 0;
+
 // Roman Numerals
   function isOnes (userInput) {
     for (index = userInput; index > 0; index --){
@@ -86,18 +84,27 @@ $(function(){
 // Cryptograph
   $("form#crypt").submit(function(event){
     event.preventDefault();
+    var temp = [];
+    var counter = 0;
+    var elem = 0;
     var message = $("#msg").val().split('');
     var cols = Math.ceil(Math.sqrt(message.length));
-    for (i=0; i <= message.length; i++) {
-      temp += (message[(cols*elem)+counter])
-      elem++
+    alert(cols);
+    for (i=0; i < message.length; i++) {
+      temp += (message[(cols*elem)+counter]);
+      elem++;
       // counter = # of resets
       // cols * elem = index of element being grabbed
       if (message[(cols*elem)+counter] == undefined ) {
-        counter++
-        elem=0
+        counter++;
+        elem=0;
       }
     }
     $("#cryptOutput").text("Here is your encrypted message: "+temp+".");
   })
 });
+
+// hel
+// p m
+// e--
+//
