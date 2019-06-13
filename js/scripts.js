@@ -2,69 +2,68 @@ $(function(){
 
   var userInput;
   var temp = [];
-  var n = 0;
-  var y = 0;
+  var counter = 0;
+  var elem = 0;
 // Roman Numerals
   function isOnes (userInput) {
     for (index = userInput; index > 0; index --){
       if (index == 4){
-      $("#output").append("IV");
+      $("#romanOutput").append("IV");
       index-=3;
       } else if (index == 9){
-      $("#output").append("IX");
+      $("#romanOutput").append("IX");
       index-=8;
     } else if (index >= 5 && index < 9) {
-      $("#output").append("V");
+      $("#romanOutput").append("V");
       index-=4;
-      console.log(index);
       } else {
-      $("#output").append("I");
+      $("#romanOutput").append("I");
       }
     };
   };
   function isTens (userInput) {
     for (index=userInput; index > 0; index--)
     if (index == 4){
-    $("#output").append("XL");
+    $("#romanOutput").append("XL");
     index-=3;
     } else if (index == 9){
-    $("#output").append("XC");
+    $("#romanOutput").append("XC");
     index-=8;
     } else if (index >= 5 && index < 9) {
-    $("#output").append("L");
+    $("#romanOutput").append("L");
     index-=4;
     } else {
-    $("#output").append("X");
+    $("#romanOutput").append("X");
     }
   };
   function isHuns (userInput) {
     for (index=userInput; index > 0; index--)
     if (index == 4){
-    $("#output").append("CD");
+    $("#romanOutput").append("CD");
     index-=3;
     } else if (index == 9){
-    $("#output").append("CM");
+    $("#romanOutput").append("CM");
     index-=8;
     } else if (index >= 5 && index < 9) {
-    $("#output").append("D");
+    $("#romanOutput").append("D");
     index-=4;
     console.log(index);
     } else {
-    $("#output").append("C");
+    $("#romanOutput").append("C");
     }
   };
   function isK (userInput) {
     for (index=userInput; index > 0; index--)
     if (index >=4){
-    $("#output").append("Impossible as Roman Numerals cannot calculate above 3999");
+    $("#romanOutput").append("Impossible as Roman Numerals cannot calculate above 3999");
     } else {
-    $("#output").append("M");
+    $("#romanOutput").append("M");
     }
   };
   $("form#romans").submit(function(event){
       event.preventDefault();
       userInput = $("input#number").val().split('');
-      $("#output").text("This is your number in Roman Numerals: ");
+      $("#romanOutput").text("This is your number in Roman Numerals: ");
       if (userInput.length == 1){
         isOnes(userInput);
       } else if (userInput.length == 2) {
@@ -80,7 +79,7 @@ $(function(){
         isTens (userInput[2]);
         isOnes (userInput[3]);
       } else {
-        $("#output").text("This number is too large to convert!");
+        $("#romanOutput").text("This number is too large to convert!");
       }
     });
 
@@ -88,24 +87,17 @@ $(function(){
   $("form#crypt").submit(function(event){
     event.preventDefault();
     var message = $("#msg").val().split('');
-    console.log(message);
     var cols = Math.ceil(Math.sqrt(message.length));
-    console.log(cols);
     for (i=0; i <= message.length; i++) {
-      temp += (message[(cols*y)+n])
-      y++
-      if (message[(cols*y)+n] == undefined ) {
-        n++
-        y=0
+      temp += (message[(cols*elem)+counter])
+      elem++
+      // counter = # of resets
+      // cols * elem = index of element being grabbed
+      if (message[(cols*elem)+counter] == undefined ) {
+        counter++
+        elem=0
       }
     }
-    alert(temp);
+    $("#cryptOutput").text("Here is your encrypted message: "+temp+".");
   })
 });
-ituhu ritcfesai ngtot
-0123456789  0123456789  01
-i cant fig  ure this o  ut
-
-0,4,9,14,19
-
-it
